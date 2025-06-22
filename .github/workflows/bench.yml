@@ -41,11 +41,11 @@ jobs:
           name: bench-output
           path: bench.env
 
-      - name: Publish badge to bench-badge branch
-        uses: badgen/action@v3
-        with:
-          label: MB/s
-          status: ${{ steps.bench.outputs.mbps }}
-          color: green
-          path: bench.svg
-          branch: bench-badge
+      # - name: Publish badge to bench-badge branch
+      #   uses: badgen/action@v3
+      #   with:
+      #     label: MB/s
+      #     status: ${{ steps.bench.outputs.mbps }}
+      #     color: green
+      #     path: bench.svg
+      #     branch: bench-badge

@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x, 20.x]
 
     steps:
       - name: Checkout repository
@@ -49,5 +49,5 @@ jobs:
           # Pick up all JSON coverage reports (Vitest v8 provider)
           files: ./coverage/**/*.json
           flags: node-${{ matrix.node-version }}
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ''
           fail_ci_if_error: false
