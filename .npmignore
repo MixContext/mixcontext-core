@@ -1,0 +1,7 @@
+*
+!.npmignore
+!dist/
+!docs/
+!README.md
+!LICENSE
+!package.json

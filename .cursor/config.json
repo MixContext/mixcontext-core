@@ -1,0 +1,13 @@
+{
+  "contextPaths": [
+    "src/**/*",
+    ".cursor/rules.md",
+    ".cursor/workflows.md",
+    ".cursor/personas.md"
+  ],
+  "excludePaths": [
+    "node_modules/**",
+    "dist/**"
+  ],
+  "defaultScope": "src"
+}

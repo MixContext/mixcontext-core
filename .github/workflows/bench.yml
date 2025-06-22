@@ -1,0 +1,51 @@
+name: Benchmark
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Run benchmark
+        id: bench
+        run: |
+          line=$(pnpm bench | tail -n1)
+          echo "$line"
+          # Parse value after '='
+          value=${line#*=}
+          echo "mbps=$value" >> $GITHUB_OUTPUT
+          echo "$line" > bench.env
+
+      - name: Upload raw throughput artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-output
+          path: bench.env
+
+      - name: Publish badge to bench-badge branch
+        uses: badgen/action@v3
+        with:
+          label: MB/s
+          status: ${{ steps.bench.outputs.mbps }}
+          color: green
+          path: bench.svg
+          branch: bench-badge

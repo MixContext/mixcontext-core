@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "name": "MixContext-Core",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "theme": "default"
+}
