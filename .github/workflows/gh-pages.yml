@@ -24,6 +24,12 @@ jobs:
           version: 8
           run_install: false
 
+      - name: Ensure pnpm is available
+        run: |
+          corepack enable
+          corepack prepare pnpm@8 --activate
+          echo "pnpm version=" $(pnpm --version)
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

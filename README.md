@@ -155,28 +155,28 @@ for answer synthesis.
 
 ```mermaid
 flowchart TD
-  subgraph Parsing
-    A[Buffer / File] --> B{detect mime}
-    B -->|pdf| C[parsePdf]
-    B -->|docx| D[parseDocx]
-    B -->|html| E[parseHtml]
-    B -->|image| F[parseImage]
+  subgraph "Parsing"
+    A["Buffer / File"] --> B{"detect mime"}
+    B -->|"pdf"| C["parsePdf"]
+    B -->|"docx"| D["parseDocx"]
+    B -->|"html"| E["parseHtml"]
+    B -->|"image"| F["parseImage"]
   end
 
-  subgraph Chunking
-    G[chunkText] --> H[dedupe hashes]
+  subgraph "Chunking"
+    G["chunkText"] --> H["dedupe hashes"]
   end
 
-  subgraph Embedding
-    I[embedChunks] --> J{{openai \| local}}
+  subgraph "Embedding"
+    I["embedChunks"] --> J{"openai / local"}
   end
 
-  subgraph Bundling
-    K[buildBundle] --> L[mixcontext.json + originals]
+  subgraph "Bundling"
+    K["buildBundle"] --> L["mixcontext.json + originals"]
   end
 
-  subgraph Vector
-    M[LocalVectorDB] --> N[(SQLite / JS fallback)]
+  subgraph "Vector"
+    M["LocalVectorDB"] --> N["SQLite / JS fallback"]
   end
 
   C & D & E & F --> G
